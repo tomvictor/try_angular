@@ -7,11 +7,13 @@ import { IProduct } from "./product";
     styleUrls:['./product-list.component.css']
 })
 export class productListComponent implements OnInit{
-    pageTitle : string = "Product List"
     
+    pageTitle : string = "Product List"
     imageWidth : number = 50;
     imageMargin:number = 2
     showImage : boolean = false
+    filteredProducts : IProduct[] = [];
+
     products : IProduct[] = [
         {
           "productId": 1,
@@ -74,7 +76,15 @@ export class productListComponent implements OnInit{
       set listFilter(value: string) {
           this._listFilter = value ;
           console.log('In setter:', value)
+          this.filteredProducts = this.performFilter(value)
       }
+
+      performFilter(filterBy: string): IProduct[] {
+        filterBy = filterBy.toLowerCase();
+        return this.products.filter((product:IProduct) =>
+            product.productName.toLowerCase().includes(filterBy)
+        )
+    }
 
       ngOnInit():void {
           console.log("on init")
