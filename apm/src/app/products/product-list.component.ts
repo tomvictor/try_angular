@@ -8,7 +8,7 @@ import { IProduct } from "./product";
 })
 export class productListComponent implements OnInit{
     pageTitle : string = "Product List"
-    listFilter: String = "cart"
+    
     imageWidth : number = 50;
     imageMargin:number = 2
     showImage : boolean = false
@@ -64,11 +64,24 @@ export class productListComponent implements OnInit{
           "imageUrl": "assets/images/xbox-controller.png"
         }
       ]
+
+      private _listFilter : string = ''
+
+      get listFilter(): string {
+          return this._listFilter
+      }
+
+      set listFilter(value: string) {
+          this._listFilter = value ;
+          console.log('In setter:', value)
+      }
+
       ngOnInit():void {
           console.log("on init")
+          this._listFilter = "cart"
       }
 
       toggleImage() : void{
-          this.showImage =!this.showImage;
+          this.showImage =! this.showImage;
       }
 }
