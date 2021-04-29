@@ -6,6 +6,7 @@ templateUrl:'./produt-list.component.html'
 })
 export class productListComponent{
     pageTitle : string = "Product List"
+    listFilter:String = "cart"
     imageWidth : number = 50;
     imageMargin:number = 2
     showImage : boolean = false
