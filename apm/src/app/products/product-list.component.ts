@@ -11,9 +11,7 @@ export class productListComponent implements OnInit{
     pageTitle : string = "Product List"
     imageWidth : number = 50;
     imageMargin:number = 2
-    showImage : boolean = false
-    filteredProducts : IProduct[] = [];
-
+    showImage : boolean = true
     products : IProduct[] = [
         {
           "productId": 1,
@@ -67,6 +65,8 @@ export class productListComponent implements OnInit{
         }
       ]
 
+      filteredProducts : IProduct[] = this.products;
+
       private _listFilter : string = ''
 
       get listFilter(): string {
@@ -80,6 +80,7 @@ export class productListComponent implements OnInit{
       }
 
       performFilter(filterBy: string): IProduct[] {
+
         filterBy = filterBy.toLowerCase();
         return this.products.filter((product:IProduct) =>
             product.productName.toLowerCase().includes(filterBy)
@@ -88,10 +89,15 @@ export class productListComponent implements OnInit{
 
       ngOnInit():void {
           console.log("on init")
-          this._listFilter = "cart"
+          this._listFilter = ""
       }
 
       toggleImage() : void{
           this.showImage =! this.showImage;
+      }
+
+      onRatingClicked(message:string): void {
+          console.log(message);
+          this.pageTitle = message;
       }
 }
