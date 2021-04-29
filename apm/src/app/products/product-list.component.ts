@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { IProduct } from "./product";
 import { ProductService } from "./product.service";
 
@@ -7,18 +8,22 @@ import { ProductService } from "./product.service";
     templateUrl:'./produt-list.component.html',
     styleUrls:['./product-list.component.css']
 })
-export class productListComponent implements OnInit {
+export class productListComponent implements OnInit,OnDestroy {
     
     constructor (private productService : ProductService) {}
     
     pageTitle : string = "Product List"
-    imageWidth : number = 50;
+    imageWidth : number = 75;
     imageMargin: number = 2
     showImage : boolean = true
     products : IProduct[] = []
     filteredProducts : IProduct[] = [];
 
-    private _listFilter : string = ''
+    errorMessage : string = '';
+
+    private _listFilter : string = '';
+
+    sub! : Subscription;
 
     get listFilter(): string {
         return this._listFilter
@@ -41,11 +46,20 @@ export class productListComponent implements OnInit {
       ngOnInit():void {
           console.log("on init");
           this._listFilter = "";
-          this.products = this.productService.getProducts();
-          this.filteredProducts = this.products;
+          this.productService.getProducts().subscribe({
+              next: products => {
+                  this.products = products;
+                  this.filteredProducts = this.products;
+              },
+              error: err => this.errorMessage = err
+          });
       }
 
-      toggleImage() : void{
+      ngOnDestroy(): void {
+          this.sub.unsubscribe()
+      }
+
+      toggleImage() : void {
           this.showImage =! this.showImage;
       }
 
