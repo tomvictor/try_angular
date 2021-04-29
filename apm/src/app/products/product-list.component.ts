@@ -2,8 +2,9 @@ import { Component } from "@angular/core";
 import { IProduct } from "./product";
 
 @Component({
-selector : 'pm-products',
-templateUrl:'./produt-list.component.html'
+    selector : 'pm-products',
+    templateUrl:'./produt-list.component.html',
+    styleUrls:['./product-list.component.css']
 })
 export class productListComponent{
     pageTitle : string = "Product List"
