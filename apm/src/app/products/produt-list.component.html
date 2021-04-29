@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class="btn btn-primary">show image</button>
+                            <button class="btn btn-primary">Show image</button>
                         </th>
                         <th>Product</th>
                         <th>Code</th>
@@ -30,7 +30,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let product of products'>
-                        <td>{{product.productId}}</td>
+                        <td>
+                            <img 
+                            [src]='product.imageUrl' 
+                            [title]="product.productName"
+                            [style.width.px] = 'imageWidth'
+                            [style.margin.px] = 'imageMargin'
+                            >
+                        </td>
                         <td>{{product.productName}}</td>
                         <td>{{product.productCode}}</td>
                         <td>{{product.releaseDate}}</td>
