@@ -8,6 +8,5 @@ selector: 'pm-root',
 templateUrl : './app.component.html'
 })
 export class AppComponent{
-  pageTitle: string = 'Acme Product management'
-  title:string = "apm"
+  title: string = 'Acme Product management'
 }
