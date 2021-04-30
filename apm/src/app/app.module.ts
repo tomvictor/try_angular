@@ -9,6 +9,7 @@ import { ConvertToSpacePipe } from './shared/convert-to-spaces.pipe'
 import { StarComponent } from './shared/star.component';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { ProductWelcomeComponent } from './products/product-welcome.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -23,7 +24,14 @@ import { ProductWelcomeComponent } from './products/product-welcome.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'products', component: productListComponent },
+      { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'welcome', component: ProductWelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      { path: '**', redirectTo: 'welcome', pathMatch: "full"}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
