@@ -6,3 +6,5 @@ Teacher ref : https://github.com/DeborahK/Angular-GettingStarted/tree/master/APM
 ##component generation
 
 ``ng g c products/product-detail  --flat``
+
+``ng g g products/product-detail``
