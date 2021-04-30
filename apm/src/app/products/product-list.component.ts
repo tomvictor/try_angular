@@ -46,7 +46,7 @@ export class productListComponent implements OnInit,OnDestroy {
       ngOnInit():void {
           console.log("on init");
           this._listFilter = "";
-          this.productService.getProducts().subscribe({
+          this.sub = this.productService.getProducts().subscribe({
               next: products => {
                   this.products = products;
                   this.filteredProducts = this.products;
