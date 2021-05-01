@@ -1,8 +1,8 @@
 # try_angular
 My angular referance project.
 
-Teacher ref (angular starter) : https://github.com/DeborahK/Angular-GettingStarted/tree/master/APM-Final/src/api/products
-Teacher ref (angular rxjs) : https://github.com/DeborahK/Angular-RxJS
+* Teacher ref (angular starter) : https://github.com/DeborahK/Angular-GettingStarted/tree/master/APM-Final/src/api/products
+* Teacher ref (angular rxjs) : https://github.com/DeborahK/Angular-RxJS
 
 
 ##component generation
