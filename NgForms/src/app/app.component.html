@@ -1,0 +1,34 @@
+
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+    <h1>{{title}}</h1>
+    <br>
+    {{diagnostic}}
+    </div>
+    <div class="col-sm-4">
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label  class="form-label">Power</label>
+          <select class="form-control" name="power" required [(ngModel)]='model.power'>
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]='model.name'>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">alterEgo</label>
+          <input type="text" class="form-control" name="alterEgo" [(ngModel)]='model.alterEgo'>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
