@@ -5,7 +5,7 @@ My angular referance project.
 * Teacher ref (angular rxjs) : https://github.com/DeborahK/Angular-RxJS
 
 
-##component generation
+## component generation
 
 ``ng g c products/product-detail  --flat``
 
