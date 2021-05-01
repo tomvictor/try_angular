@@ -46,7 +46,22 @@ export class AppComponent implements OnInit {
       tap(item => console.log(item))
     ).subscribe()
 
-
-
+    console.log("error handling");
+    from([20,15,10,5]).pipe(
+      tap(item => console.log(`emited item ...${item}`)),
+      map(item => item*2),
+      map(item => item-10),
+      map(item => {
+        if (item === 0) {
+          throw new Error('zero is detected');
+        }
+        return item
+      }),
+      take(3)
+    ).subscribe(
+      item => console.log(`resulting item is ${item}`),
+      err => console.error(`error occure ${err}`),
+      () => console.log("complete")
+    )
   }
 }
