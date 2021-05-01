@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { from, of } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-root',
@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
     console.log("map operator");
     of(2,4,6).pipe(
       map(item => item*2)
+    ).subscribe(console.log);
+    console.log("tap operator");
+    of(2,3,4,5).pipe(
+      tap(item=> console.log(`taped item: ${item}`))
     ).subscribe(console.log)
 
   }
