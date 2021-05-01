@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { from, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators'
+import { map, tap,take } from 'rxjs/operators'
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'RxjsDemo';
 
   ngOnInit(){
+
     console.log("of function");
     of(2,4,6,8).subscribe(console.log);
     console.log("from function");
@@ -19,14 +20,33 @@ export class AppComponent implements OnInit {
       err => console.log(`error occured ${err}`),
       () => console.log("completed")
     )
+
     console.log("map operator");
     of(2,4,6).pipe(
       map(item => item*2)
     ).subscribe(console.log);
+
     console.log("tap operator");
     of(2,3,4,5).pipe(
       tap(item=> console.log(`taped item: ${item}`))
+    ).subscribe(console.log);
+
+    console.log("take operator");
+    // only emit first 2 item from the sequene
+    of(2,4,6).pipe(
+      take(2)
     ).subscribe(console.log)
+
+    console.log("take example 2");
+    of(2,4,6).pipe(
+      tap(item => console.log(item)),
+      map(item => item*2),
+      take(2),
+      map(item=>item-3),
+      tap(item => console.log(item))
+    ).subscribe()
+
+
 
   }
 }
