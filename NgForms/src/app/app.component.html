@@ -10,7 +10,7 @@
     </div>
     <div class="col-sm-4">
 
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
         <div class="mb-3">
           <label  class="form-label">Power</label>
           <select class="form-control" name="power" required [(ngModel)]='model.power'>
