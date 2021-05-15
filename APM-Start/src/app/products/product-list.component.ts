@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
@@ -20,6 +21,12 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.productService.getProducts()
+    .pipe(
+      catchError( err => {
+        this.errorMessage = err ;
+        return EMPTY;
+      })
+    )
   }
 
   onAdd(): void {
