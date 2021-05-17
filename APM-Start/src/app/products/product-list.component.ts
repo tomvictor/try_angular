@@ -10,24 +10,24 @@ import { ProductService } from './product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
+
+
+  constructor(private productService: ProductService) { }
+
+
   pageTitle = 'Product List';
   errorMessage = '';
   categories;
 
-  products$: Observable<Product[]>;
-
-  constructor(private productService: ProductService) { }
-
-  ngOnInit(): void {
-    this.products$ = this.productService.getProducts()
-    .pipe(
+  products$: Observable<Product[]> = this.productService.products$
+  .pipe(
       catchError( err => {
         this.errorMessage = err ;
         return EMPTY;
       })
-    )
-  }
+    );
+
 
   onAdd(): void {
     console.log('Not yet implemented');
