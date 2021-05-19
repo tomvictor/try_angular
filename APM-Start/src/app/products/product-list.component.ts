@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { EMPTY, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
@@ -21,13 +21,21 @@ export class ProductListComponent {
   errorMessage = '';
   categories;
 
-  products$: Observable<Product[]> = this.productService.products$
+  products$ = this.productService.products$
   .pipe(
+    map(products => 
+      products.map(product => ({
+        // spread operator, copy the objects keys and values
+        ...product, 
+        price : product.price * 2.5,
+        searchKey : [product.productName]
+      }) as Product),
+
       catchError( err => {
         this.errorMessage = err ;
         return EMPTY;
       })
-    );
+    ));
 
 
   onAdd(): void {
